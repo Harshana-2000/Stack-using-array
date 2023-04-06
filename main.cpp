@@ -1,9 +1,6 @@
 #include <iostream>
 
 using namespace std;
-#include <iostream>
-
-using namespace std;
 
 const int MAX_SIZE = 100;
 
@@ -11,87 +8,87 @@ struct arrayStack {
     int size_;
     int stack_arr[MAX_SIZE];
     int top = -1;
+    bool isEmpty() {
+        if (top == -1) {
+            return true;
+        }
+        return false;
+    }
+
+    bool isFull() {
+        if (top == size_ - 1) {
+            return true;
+        }
+        return false;
+    }
+
+    void push(int element) {
+        if (isFull()) {
+            cout << "stack Overflow!\n";
+            return;
+        }
+        top += 1;
+        stack_arr[top] = element;
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "stack Underflow!\n";
+            return;
+        }
+        stack_arr[top] = 0;
+        top -= 1;
+    }
+
+    void stackTop() {
+        if (isEmpty()) {
+            return;
+        }
+        cout << stack_arr[top];
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout <<"Stack is Empty!\n";
+            return;
+        }
+        int current = top;
+        cout << "[ ";
+        while (current >= 1) {
+            int elem = stack_arr[current];
+            cout << elem << " ,";
+            current -= 1;
+        }
+        cout << stack_arr[current]<<" ]\n";
+    }
 };
-
-bool isEmpty(struct arrayStack &stack_) {
-    if (stack_.top == -1) {
-        return true;
-    }
-    return false;
-}
-
-bool isFull(struct arrayStack &stack_) {
-    if (stack_.top == stack_.size_ - 1) {
-        return true;
-    }
-    return false;
-}
-
-void push(struct arrayStack &stack_, int element) {
-    if (isFull(stack_)) {
-        cout << "stack Overflow!\n";
-        return;
-    }
-    stack_.top += 1;
-    stack_.stack_arr[stack_.top] = element;
-}
-
-void pop(struct arrayStack &stack_) {
-    if (isEmpty(stack_)) {
-        cout << "stack Underflow!\n";
-        return;
-    }
-    stack_.stack_arr[stack_.top] = 0;
-    stack_.top -= 1;
-}
-
-void stackTop(struct arrayStack &stack_) {
-    if (isEmpty(stack_)) {
-        return;
-    }
-    cout << stack_.stack_arr[stack_.top];
-}
-
-void display(struct arrayStack &stack_) {
-    if (isEmpty(stack_)) {
-        return;
-    }
-    int current = stack_.top;
-    cout << "[ ";
-    while (current >= 1) {
-        int elem = stack_.stack_arr[current];
-        cout << elem << " ,";
-        current -= 1;
-    }
-    cout << stack_.stack_arr[current]<<" ]\n";
-}
 
 int main() {
     // Example usage
     arrayStack my_stack;
     my_stack.size_ = 10;
 
-    push(my_stack, 8);
-    push(my_stack, 10);
-    push(my_stack, 5);
-    push(my_stack, 11);
-    push(my_stack, 15);
-    push(my_stack, 23);
-    push(my_stack, 6);
-    push(my_stack, 18);
-    push(my_stack, 20);
-    push(my_stack, 17);
-    display(my_stack);
-    pop(my_stack);
-    pop(my_stack);
-    pop(my_stack);
-    pop(my_stack);
-    pop(my_stack);
-    display(my_stack);
-    push(my_stack, 4);
-    push(my_stack, 30);
-    push(my_stack, 3);
-    push(my_stack, 1);
-    display(my_stack);
+    my_stack.push(8);
+    my_stack.push(10);
+    my_stack.push(5);
+    my_stack.push(11);
+    my_stack.push(15);
+    my_stack.push(23);
+    my_stack.push(6);
+    my_stack.push(18);
+    my_stack.push(20);
+    my_stack.push(17);
+    my_stack.display();
+    my_stack.pop();
+    my_stack.pop();
+    my_stack.pop();
+    my_stack.pop();
+    my_stack.pop();
+    my_stack.display();
+    my_stack.push(4);
+    my_stack.push(30);
+    my_stack.push(3);
+    my_stack.push(1);
+    my_stack.display();
 }
 
